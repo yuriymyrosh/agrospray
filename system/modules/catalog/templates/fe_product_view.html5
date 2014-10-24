@@ -1,0 +1,70 @@
+<div class="col-md-9">
+	<h1><?php echo $this->item['title'] ?></h1>
+	<hr>
+	<div class="col-md-4">
+		<div class="zoom-gallery">
+			<?php foreach ($this->item['photos'] as $photo): ?>
+				<a href="<?php echo $photo['big'] ?>" title="<?php echo $this->item['title'] ?>" data-source="<?php echo $photo['big'] ?>">
+					<img src="<?php echo $photo['thumb'] ?>" alt="">
+				</a>
+			<?php endforeach ?>
+
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="well">
+			<?php echo $this->item['description'] ?>
+		</div>
+		<div class="buttons">
+			<a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#orderModal"><?php echo $this->lang['order'] ?></a>
+			<div id="orderModal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="/files/bootstrap/theme/css/magnific-popup.css">
+<script src="/files/bootstrap/theme/js/jquery.1.11.1.min.js"></script>
+<script src="/files/bootstrap/theme/js/jquery.magnific-popup.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.zoom-gallery').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			closeOnContentClick: false,
+			closeBtnInside: false,
+			mainClass: 'mfp-with-zoom mfp-img-mobile',
+			image: {
+				verticalFit: true,
+				titleSrc: function(item) {
+					return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+				}
+			},
+			gallery: {
+				enabled: true
+			},
+			zoom: {
+				enabled: true,
+			duration: 300, // don't foget to change the duration also in CSS
+			opener: function(element) {
+				return element.find('img');
+			}
+		}
+
+	});
+	});
+</script>

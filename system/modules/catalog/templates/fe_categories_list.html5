@@ -1,0 +1,26 @@
+<div class="col-md-3">
+    <div class="panel-group" id="accordion">
+        <?php $i=0; foreach ($this->categories as $category): ?>
+            <?php if ($category['sub']): ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?php echo $i;?>">
+                                <?php echo $category['title'] ?>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne<?php echo $i;?>" class="panel-collapse collapse <?php if ($category['is_active']): ?>in<?php endif ?>">
+                        <nav class="panel-body nav nav-pills">
+                            <?php foreach ($category['sub'] as $sub): ?>
+                                <li <?php if ($sub['is_active']): ?> class="active"<?php endif ?>><a href="<?php echo $sub['href'] ?>"><?php echo $sub['title'] ?></a></li>
+                            <?php endforeach ?>
+                        </nav>
+                    </div>
+                </div>
+            <?php $i++; endif ?>
+        <?php endforeach ?>
+    </div>
+</div>
+<script src="/system/modules/catalog/assets/js/jquery.1.11.1.min.js"></script>
+<script src="/system/modules/catalog/assets/js/catalog.js"></script>

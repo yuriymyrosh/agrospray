@@ -1,0 +1,11 @@
+<div class="col-md-9">
+	<?php foreach ($this->items as $item): ?>
+		<div class="col-md-4">
+			<div class="well">
+				<a href="<?php echo $item['href'] ?>"><?php echo $item['title'] ?></a>
+				<img src="<?php echo $item['photo'] ?>" alt="<?php echo $item['title'] ?>">
+				<a href="<?php echo $item['href'] ?>"><?php echo $this->lang['read_more'] ?></a>
+			</div>
+		</div>
+	<?php endforeach ?>
+</div>
